@@ -1,33 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import NavBar from '@/components/NavBar';
+import { Container } from 'react-bootstrap';
+import { useLocation } from 'react-router';
+import useCounter from '@/hooks/useCounter';
+// import { useEffect } from 'react';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const {count, increment, decrement, reset} = useCounter();
+
+  const location = useLocation();
+  const state = location.state?.user;
+ if (state) {
+    console.log(state.user.firstName + " "+ state.user.lastName);
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {/* <NavBar /> */}
+      {state && (<p>{state.user.firstName + " "+ state.user.lastName}</p>)}
+      <Container className='mt-4 mx-auto bg-info-subtle text-center'>
+        <h4 className='pt-4 pb-2'>Count: {count}</h4>
+        <button className='btn btn-lg px-4 bg-success-subtle' onClick={increment}>Increment</button><br /><br />
+        <button className='btn btn-lg px-4  bg-primary-subtle' onClick={decrement}>Decrement</button><br /><br />
+        <button className='btn btn-lg px-5 bg-danger-subtle' onClick={reset}> Reset </button><br /><br />
+      </Container>
     </>
   )
 }
