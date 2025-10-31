@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import App from "@/App";
-import AuthPage from "@pages/auth";
-import {LoginForm, SignupForm, VerifyOtpForm, ForgetPassword, ResetPasswordForm} from "@features/auth/index";
+import AuthPage from "@/pages/auth";
+import {LoginForm, SignupForm, VerifyOtpForm, ForgetPassword, ResetPasswordForm} from "@/features/auth/index";
 import { RoutePath } from "./routePath";
 
 
